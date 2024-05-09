@@ -21,14 +21,14 @@ export class BoardsService {
             description,
             status: BoardStatus.PUBLIC
         }
-        
+
         this.boards.push(board);
 
         return board;
     }
 
     deletePostById(id: String) {
-        this.boards.map(post => post.id !== id);
+        this.boards = [...this.boards.filter(post => post.id !== id)];
 
         return {
             code: 200,
@@ -44,8 +44,8 @@ export class BoardsService {
             status: this.boards.filter(post => post.id === id)[0].status
         }
 
-        this.boards.map(board => {
-            if(board.id === id) {
+        this.boards = this.boards.map(board => {
+            if (board.id === id) {
                 board = {
                     ...post
                 }
