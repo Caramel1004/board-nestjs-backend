@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from "@nestjs/common";
-import { BoardsService } from "./boards.service";
-import { Board } from "./boards.model";
-import { BoardDto } from "./dto/board.dto";
+import { BoardsService } from "../services/boards.service";
+import { Board } from "../boards.model";
+import { BoardDto } from "../dto/board.dto";
 
 @Controller('/boards')
 export class BoardsController {
