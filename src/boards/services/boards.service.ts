@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { Board, BoardStatus } from "../boards.model";
 import { randomUUID } from 'crypto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BoardEntity } from '../models/entity/board.entity';
 
 @Injectable()
 export class BoardsService {
     private boards: Board[] = [];
+    constructor(
+        @InjectRepository(BoardEntity) 
+        private boardsRepository: Repository<BoardEntity>
+    ) {}
 
-    getAllBoards(): Board[] {
-        return this.boards;
+    async getAllBoards(): Promise<BoardEntity[]> {
+        return await this.boardsRepository.find();
     }
 
     getPostById(id: String): Board {
