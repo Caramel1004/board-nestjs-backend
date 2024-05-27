@@ -1,17 +1,18 @@
-import { BoardStatus } from "src/boards/boards.model";
+import {v4 as uuidv4} from "uuid";
+import { BoardStatus } from "../../boards.model";
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class BoardEntity extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
-    private postId: String;
+    id: String = uuidv4();
 
     @Column()
-    private title: String;
+    title: String;
 
     @Column()
-    private description: String;
+    description: String;
 
     @Column()
-    private status: BoardStatus;
+    status: BoardStatus;
 }
